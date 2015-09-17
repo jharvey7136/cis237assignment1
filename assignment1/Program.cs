@@ -10,6 +10,15 @@ namespace assignment1
     {
         static void Main(string[] args)
         {
+
+            UserInterface MainMenu = new UserInterface();
+
+            Console.BufferHeight = 1500;
+
+            MainMenu.MainMenu();
+
+
+
         }
     }
 }
