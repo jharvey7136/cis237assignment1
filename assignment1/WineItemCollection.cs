@@ -9,5 +9,21 @@ namespace assignment1
 {
     class WineItemCollection
     {
+
+
+
+
+        public WineItemCollection()
+        {
+
+
+            
+
+        }
+
+
+
+
+
     }
 }

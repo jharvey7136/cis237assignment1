@@ -10,26 +10,29 @@ namespace assignment1
     class UserInterface
     {
 
-        private int menu1Selection = 0;
-        private int menu2Selection = 0;
+        private int menu1Selection;
+        private int menu2Selection;
 
+
+        CSVProcessor csvProcessor = new CSVProcessor();
+        
 
         public UserInterface()
         {
         }
 
 
-        public int Menu1Selection
-        {
-            get { return menu1Selection; }
-            set { menu1Selection = value; }
-        }
+        //public int Menu1Selection
+        //{
+        //    get { return menu1Selection; }
+        //    set { menu1Selection = value; }
+        //}
 
-        public int Menu2Selection
-        {
-            get { return menu2Selection; }
-            set { menu2Selection = value; }
-        }
+        //public int Menu2Selection
+        //{
+        //    get { return menu2Selection; }
+        //    set { menu2Selection = value; }
+        //}
 
 
         public void MainMenu()
@@ -43,11 +46,14 @@ namespace assignment1
                 Console.Write("Enter Number: ");
                 try
                 {
-                    Menu1Selection = int.Parse(Console.ReadLine());
+                    menu1Selection = int.Parse(Console.ReadLine());
                     Console.WriteLine();
 
                     if (menu1Selection == 1)
+                    {
+                        
                         WineListLoaded();
+                    }
                     if (menu1Selection == 2)
                         Environment.Exit(0);
                     if (menu1Selection != 1 || menu1Selection != 2)
@@ -56,7 +62,7 @@ namespace assignment1
                 catch
                 {
                     Console.WriteLine();
-                    Console.WriteLine("*Input Must Be Integer 1 or 2*\n");
+                    Console.WriteLine("*Input Error*\n");
                 }
             }
         }
@@ -64,6 +70,9 @@ namespace assignment1
 
         public void WineListLoaded()
         {
+
+            csvProcessor.ReadDataToList();
+
             while (menu2Selection != 1 || menu2Selection != 2 || menu2Selection != 3 || menu2Selection != 4)
             {
                 Console.WriteLine("WINE LIST LOADED\n");
@@ -75,19 +84,22 @@ namespace assignment1
 
                 try
                 {
-                    Menu2Selection = int.Parse(Console.ReadLine());
+                    menu2Selection = int.Parse(Console.ReadLine());
                     Console.WriteLine();
 
                     if (menu2Selection == 1)
-                        Console.WriteLine("1 Selected");
+                    {
+                        csvProcessor.printList();
+                    }
+                        
                     if (menu2Selection == 2)
                         Console.WriteLine("2 Selected");
                     if (menu2Selection == 3)
                         Console.WriteLine("3 Selected");
                     if (menu2Selection == 4)
                         Environment.Exit(0);
-                    if (menu2Selection != 1 || menu2Selection != 2 || menu2Selection != 3 || menu2Selection != 4)
-                        Console.WriteLine("*Input Must Be Integer Between 1 - 4*\n");
+                    //if (menu2Selection != 1 || menu2Selection != 2 || menu2Selection != 3 || menu2Selection != 4)
+                    //    Console.WriteLine("*Input Must Be Integer Between 1 - 4*\n");
                 }
                 catch
                 {
