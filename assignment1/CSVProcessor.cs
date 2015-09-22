@@ -10,119 +10,81 @@ namespace assignment1
     class CSVProcessor
     {
 
-        List<string> column1 = new List<string>();
-        //List<string> column2 = new List<string>();
-        //List<string> column3 = new List<string>();
+        WineItemCollection addingCollection = new WineItemCollection();
 
-        //string[] row1 = new string[4000];
-        //string[] row2 = new string[4000];
-        //string[] row3 = new string[4000];
+        public List<string> fullList = new List<string>();
+        public List<string> wineID = new List<string>();
+        public List<string> wineDescription = new List<string>();
+        public List<string> winePack = new List<string>();
+
+        public string[] fullListArray = new string[4000];
+        public string[] wineIDArray = new string[4000];  
+        public string[] wineDesArray = new string[4000];
+        public string[] winePackArray = new string[4000];
+
+
+
 
         public CSVProcessor()
         {
-
-            //StreamReader wineStream = new StreamReader("WineList.txt");
-
-            //var column1 = new List<string>();
-            //var column2 = new List<string>();
-            //var column3 = new List<string>();
-            
-
-            //while (wineStream.Peek() != 1)
-            //{
-            //    var splits = new wineStream.ReadLine().Split(',');
-            //    column1.Add(splits[0]);
-            //    column2.Add(splits[1]);
-            //    column3.Add(splits[2]);              
-            //}
-
-
-        }
-
-        
-
-
-        public void ReadDataToList()
-        {
-
-            StreamReader wineStream = new StreamReader("WineList.txt");
-
-            //var column1 = new List<string>();
-            //var column2 = new List<string>();
-            //var column3 = new List<string>();
-
-            //string[] wineID = new string[n];
-            //string[] wineBrand = new string[n];
-            //string[] wineSize = new string[n];            
-
-            //StreamReader wineStream = new StreamReader("WineList.txt");
-
+            StreamReader wineStream = new StreamReader("WineList.txt");            
 
             while (!wineStream.EndOfStream)
             {
                 var splits = wineStream.ReadLine().Split(',');
-                column1.Add(splits[0].PadRight(10) + splits[1].PadRight(85) + splits[2]);
-                //column2.Add(splits[1]);
-                //column3.Add(splits[2]);
+                fullList.Add(splits[0].PadRight(10) + splits[1].PadRight(85) + splits[2]);
+                wineID.Add(splits[0].ToString().ToUpper());
+                wineDescription.Add(splits[1].ToString().ToUpper());
+                winePack.Add(splits[2].ToString().ToUpper());                
 
+                fullListArray = fullList.ToArray();
+                wineIDArray = wineID.ToArray();
+                wineDesArray = wineDescription.ToArray();
+                winePackArray = winePack.ToArray();
             }
-
-            //while (!wineStream.EndOfStream)
-            //{
-            //    var splits = wineStream.ReadLine().Split(',');
-            //    column1.Add(splits[0]);
-            //    column2.Add(splits[1]);
-            //    column3.Add(splits[2]);
-
-
-
-            //    wineID = wineStream.ReadLine().Split(',');
-            //    wineBrand = wineStream.ReadLine().Split(',');
-            //    wineSize = wineStream.ReadLine().Split(',');
-            //}
-
-
-            //foreach (var element in column1)
-            //    row1 = column1.ToArray();
-
-            //foreach (var element in column2)
-            //    row2 = column2.ToArray();
-            
-            //foreach (var element in column3)
-            //    Console.WriteLine(element);
-
 
         }
 
-        public void printList()
+
+        public void CsvAddToCollection()
+        {            
+                WineItem row1 = new WineItem(fullListArray);
+                addingCollection.addWine(row1);
+        }
+
+
+
+        public void PrintFullList()
         {
-            //StreamReader wineStream = new StreamReader("WineList.txt");
+            WineItem FullListAdd = new WineItem(fullListArray);
+            addingCollection.addWine(FullListAdd);
+            Console.WriteLine(FullListAdd);
+        }
 
 
-            //while (!wineStream.EndOfStream)
-            //{
-            //    var splits = wineStream.ReadLine().Split(',');
-            //    column1.Add(splits[0]);
-            //    column2.Add(splits[1]);
-            //    column3.Add(splits[2]);
+        public void PrintPropertyTest()
+        {
+            for (int i = 0; i < 4000; i++)
+                Console.WriteLine(WineIDProperty[i]);
+        }
+        
 
-            //}
-            
+        public string[] WineIDProperty
+        {
+            get { return this.wineIDArray; }
+            set { this.wineIDArray = value; }
+        }
 
+        public string[] WineDescriptProperty
+        {
+            get { return this.wineDesArray; }
+            set { this.wineDesArray = value; }
+        }
 
-
-            Console.WriteLine("Column 1:");
-            foreach (var element in column1)
-                Console.WriteLine(element);
-            //Console.WriteLine("Column 2:");
-            //foreach (var element in column2)
-            //    Console.WriteLine(element);
-            //Console.WriteLine("Column 2:");
-            //foreach (var element in column3)
-            //    Console.WriteLine(element);
-        }         
-
-
-
+        public string[] WinePackProperty
+        {
+            get { return this.winePackArray; }
+            set { this.winePackArray = value; }
+        }
     }
 }
