@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+//John Harvey - CIS237 - Assignment 1 - Due 9/22/15
+
 namespace assignment1
 {
     class UserInterface
